@@ -1,0 +1,7 @@
+canvas#main-canvas {
+  border:1px solid #333333;
+  height: 480px;
+  //padding-top:56.26%; // DO NOT use because the canvas will not draw.
+  width: calc(100vw - 2px);
+  overflow: hidden;
+}

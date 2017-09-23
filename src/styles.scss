@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Ropa+Sans|Source+Sans+Pro');
+
+@mixin headings {
+  h1, h2, h3,
+  h4, h5, h6 {
+    @content;
+  }
+}
+
+@include headings {
+  font: 32px/42px "Ropa Sans";
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+  @extend %headings !optional;
+}
+
+footer > %headings {
+  color: rgba(15,15,15,0.8275);
+}
+
+body {
+  background-color: #000000;
+  color:#ffffff;
+  font-family: "Source Code Pro", sans-serif;
+}
+body a {
+  color: dodgerblue;
+}
