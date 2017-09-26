@@ -29,7 +29,7 @@ export class Texture {
     }
   }
 
-  public getId (): number {
+  public getId (): WebGLTexture {
     return this.resource.getId();
   }
 }

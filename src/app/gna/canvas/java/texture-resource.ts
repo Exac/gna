@@ -1,19 +1,21 @@
 // import opengl.GL11.glGenTextures
 // import opengl.GL11.glDeleteBuffers
 
+// ENGINE.RENDERING.RESOURCEMANAGEMENT
+
+import { gl } from '../globals';
+
 export class TextureResource {
-  private id: number;
+  private id: WebGLTexture;
   private refCount: number;
 
   constructor () {
-    // TODO: implement
-    // this.id = glGentextures();
+    this.id = gl.createTexture();
     this.refCount = 1;
   }
 
   protected finalize (): void {
-    // TODO: implement
-    // glDeleteBuffers(this.id);
+    gl.deleteBuffer(this.id);
   }
 
   public addReference (): void {
@@ -25,7 +27,7 @@ export class TextureResource {
     return this.refCount === 0;
   }
 
-  public getId (): number {
+  public getId (): WebGLTexture {
     return this.id;
   }
 }

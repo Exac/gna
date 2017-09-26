@@ -1,3 +1,4 @@
+#version 300 es
 //FRAGMENT SHADER
 void main()
 {

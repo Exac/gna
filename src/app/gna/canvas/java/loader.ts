@@ -6,12 +6,29 @@ export class Loader {
   constructor () { }
 
   /**
+   * const p: Promise<{}> = Loader.getFilePromise('test.obj');
+   * p.then((str: string) => { console.log(str); });
+   */
+  public static getFilePromise (fileName: string): Promise<string> {
+    return fetch('/assets/' + fileName, {method: 'get'})
+      .then(function(res: Response) {
+        return res;
+      })
+      .then(function (r: Response) {
+        return r.text();
+      })
+      .catch(function (error) {
+        return '';
+      });
+  }
+
+  /**
    *
    * @param {string} fileName To load
    * @returns {any}
    */
   public getFile (fileName: string): any {
-    return fetch(fileName, {method: 'get'})
+    return fetch(fileName, { method: 'get' })
       .then((response) => {
         return response.text();
       })
@@ -22,4 +39,6 @@ export class Loader {
         console.error(error);
       });
   }
+
+
 }

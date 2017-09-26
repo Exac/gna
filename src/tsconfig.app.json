@@ -8,6 +8,8 @@
   },
   "exclude": [
     "test.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "gna/src/app/gna/WebGL2.d.ts",
+    "gna/src/app/gna/Misc.d.ts"
   ]
 }

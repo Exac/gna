@@ -29,6 +29,11 @@ import { Window } from './java/window';
 import { MappedValues } from './java/mapped-values';
 import { ShaderResource } from './java/shader-resource';
 import { TextureResource } from './java/texture-resource';
+import { FreeLook } from './java/free-look';
+import { Integer } from './java/Integer';
+import { BufferedFileReader } from './java/buffered-file-reader';
+import { Loader } from './java/loader';
+import { OBJModel } from './java/obj-model';
 
 
 @Component({
@@ -57,51 +62,63 @@ export class CanvasComponent implements OnInit {
     // ENGINE
 
     // ENGINE.CORE
-    const vec2 = new Vector2(1, 1);
-    const vec3 = new Vector3(1, 1, 1);
-    const vec4 = new Quaternion(1, 1, 1, 1);
-    const mat4 = new Matrix4().InitIdentity();
-    const tran = new Transform();
-    const time = new Time();
-    const util = new Util();
-    const woob = new WorldObject();
-    const inpt = new Input();
-    const core = new CoreEngine(720, 480, 144, new TestWorld());
+    // const vec2 = new Vector2(1, 1);
+    // const vec3 = new Vector3(1, 1, 1);
+    // const vec4 = new Quaternion(1, 1, 1, 1);
+    // const mat4 = new Matrix4().InitIdentity();
+    // const tran = new Transform();
+    // const time = new Time();
+    // const util = new Util();
+    // const woob = new WorldObject();
+    // const inpt = new Input();
+    // const core = new CoreEngine(720, 480, 144, new TestWorld()); // TODO TOCOMPLETE
     // ENGINE.COMPONENTS
-    const bslt = new BaseLight(vec3, 0.9);
-    const cmra = new Camera(mat4);
-    const dilt = new DirectionalLight(vec3, 0.9);
-    // const frlk = new FreeLook(0.5); // TODO
-    const frmv = new FreeMove(10, 87, 83, 65, 68);
-    const woco = new WorldComponent();
+    // const bslt = new BaseLight(vec3, 0.9);
+    // const cmra = new Camera(mat4);
+    // const dilt = new DirectionalLight(vec3, 0.9);
+    // const frlk = new FreeLook(0.5);
+    // const frmv = new FreeMove(10, 87, 83, 65, 68);
+    // const woco = new WorldComponent();
     // const mere = new MeshRenderer(
     //   new Mesh('mesh1.obj'),
     //   new Material(new Texture('diffuse.png'), 0.5, 0.5, new Texture('normal.png'), new Texture('dispMap.png'), 1.0, 0.0)
     // ); // TODO
-    const polt = new PointLight(vec3, 1.0, new Attenuation(0.0, 0.0, 1));
-    const splt = new SpotLight(vec3, 1.0, new Attenuation(0.0, 0.0, 1), 0.5);
+    // const polt = new PointLight(vec3, 1.0, new Attenuation(0.0, 0.0, 1));
+    // const splt = new SpotLight(vec3, 1.0, new Attenuation(0.0, 0.0, 1), 0.5);
 
     // ENGINE.RENDERING
-    const attn = new Attenuation(0.0, 0.0, 1);
-    // const matl = new Material(...); // todo
+    // const attn = new Attenuation(0.0, 0.0, 1);
+    // const matl = new Material(...);
     // const mesh = new Mesh('mesh.obj'); // TODO
-    const reen = new RenderingEngine(); // TODO
-    const shad = new Shader('shader');
-    const text = new Texture('texture.png'); // TODO
-    const vert = new Vertex(vec3, vec2, vec3, vec3);
-    const wind = new Window(); // TODO
+    // const reen = new RenderingEngine(); // TODO TOCOMPLETE
+    // const shad = new Shader('shader');
+    // const text = new Texture('texture.png'); // TODO TOCOMPLETE
+    // const vert = new Vertex(vec3, vec2, vec3, vec3);
+    // const wind = new Window(); // TODO TOCOMPLETE
     // ENGINE.RENDERING.MESHLOADING
-    // const inmo = IndexedModel(); // TODO
-    // const OBJIndex = new OBJIndex(); // TODO
-    // const OBJModel = new OBJModel(); // TODO
+    // const inmo = IndexedModel();
+    // const OBJIndex = new OBJIndex();
+    // const OBJModel = new OBJModel();
     // ENGINE.RENDERING.RESOURCEMANAGEMENT
-    // const mere = new MeshResource(); // TODO
-    const shre = new ShaderResource();
-    const tere = new TextureResource(); // TODO
+    // const mpva = new MappedValues();
+    // const mere = new MeshResource();
+    // const shre = new ShaderResource();
+    // const tere = new TextureResource();
     // WORLD
-    const lacp = new LookAtComponent();
-    const tstw = new TestWorld(); // TODO
-    const main = new CanvasComponent(this.elementRef); // TODO
+    // const lacp = new LookAtComponent();
+    // const tstw = new TestWorld(); // TODO
+    // const main = new CanvasComponent(this.elementRef); // TODO TOCOMPLETE
 
+    // =================================
+    // ===========  SCRATCH ============
+    // =================================
+
+    // const vertexArr: Vertex[] = [];
+    // vertexArr[0] = new Vertex(new Vector3(1, 0, 0), new Vector2(0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+    // vertexArr[1] = new Vertex(new Vector3(0, 1, 0), new Vector2(0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+    // vertexArr[2] = new Vertex(new Vector3(0, 0, 1), new Vector2(0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+    //
+    // const x = Util.createFlippedBuffer(vertexArr);
+    // console.log(x);
   }
 }

@@ -1,5 +1,4 @@
 'use strict';
-
 export let gl: WebGLRenderingContext;
 export let c: CanvasRenderingContext2D;
 
@@ -9,7 +8,7 @@ tempGLCanvas.width = 1;
 tempGLCanvas.height = 1;
 document.getElementsByTagName('body')[0].appendChild(tempGLCanvas);
 const elementGL: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById(tempGLCanvas.id);
-gl = elementGL.getContext('webgl');
+gl = <WebGLRenderingContext>elementGL.getContext('webgl2');
 
 const tempCCanvas = document.createElement('canvas');
 tempCCanvas.id = 'temp-canvas';
