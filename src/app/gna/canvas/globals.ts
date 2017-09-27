@@ -1,5 +1,5 @@
 'use strict';
-export let gl: WebGLRenderingContext;
+export let gl: WebGL2RenderingContext;
 export let c: CanvasRenderingContext2D;
 
 const tempGLCanvas = document.createElement('canvas');
@@ -8,7 +8,9 @@ tempGLCanvas.width = 1;
 tempGLCanvas.height = 1;
 document.getElementsByTagName('body')[0].appendChild(tempGLCanvas);
 const elementGL: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById(tempGLCanvas.id);
-gl = <WebGLRenderingContext>elementGL.getContext('webgl2');
+gl = elementGL.getContext('webgl2');
+
+// console.log('before:', gl, elementGL, tempGLCanvas);
 
 const tempCCanvas = document.createElement('canvas');
 tempCCanvas.id = 'temp-canvas';
@@ -32,7 +34,8 @@ export function rebindGL (DOMParent: HTMLElement, currentCanvasId: string, nextC
   canvas.width = width;
   canvas.height = height;
   DOMParent.appendChild(canvas);
-  gl = canvas.getContext('webgl');
+  gl = canvas.getContext('webgl2');
+  // console.log('after:', gl, canvas, tempGLCanvas);
 }
 
 export function rebindC (DOMParent: HTMLElement, currentCanvasId: string, nextCanvasId: string, width: number, height: number): void {

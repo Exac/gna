@@ -384,7 +384,7 @@ export class Shader {
 
   public setUniform (uniformName: string, value: Matrix4 | Vector3): void {
     if (value instanceof Matrix4) {
-      gl.uniformMatrix4fv(this.resource.getUniforms()[uniformName], true, <Float32Array>Util.createFlippedBuffer(value));
+      gl.uniformMatrix4fv(this.resource.getUniforms()[uniformName], true, Util.createFlippedBuffer(value));
     } else if (value instanceof Vector3) {
       gl.uniform3f(this.resource.getUniforms()[uniformName], value.x, value.y, value.z);
     }
