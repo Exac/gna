@@ -376,6 +376,7 @@ export class Shader {
         '\ntext: \n',
         text
       );
+      console.log('\n\n\nGLERRORS\n\n\n', gl.getShaderInfoLog(shader), gl.getShaderParameter(shader, gl.COMPILE_STATUS), '\n\n\n');
       throw new Error('SHADER COMPILATION FAILED');
     }
 

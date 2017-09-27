@@ -122,12 +122,7 @@ export class CanvasComponent implements OnInit {
     const vea: Vertex[] = [new Vertex(new Vector3(0, 0, 0), new Vector2(0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0))];
     const viewVA: Float32Array = Util.createFlippedBuffer(vea);
 
-    // const s: Shader = new Shader('shader');
+    const s: Shader = new Shader('shader300');
 
-    const g = gl;
-    console.log( gl instanceof WebGL2RenderingContext);
-    console.log(typeof gl);
-    console.log(gl);
-    // console.log(g.ACTIVE_ATTRIBUTES);
   }
 }
