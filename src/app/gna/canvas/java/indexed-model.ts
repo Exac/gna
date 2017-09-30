@@ -1,27 +1,26 @@
 import { Vector3 } from './vector3';
 import { Vector2 } from './vector2';
-import { Integer } from './Integer';
 
 export class IndexedModel {
   private positions: Array<Vector3>;
   private texCoords: Array<Vector2>;
   private normals: Array<Vector3>;
   private tangents: Array<Vector3>;
-  private indices: Array<Integer>;
+  private indices: Array<Number>;
 
   constructor () {
     this.positions = new Array<Vector3>();
     this.texCoords = [];
     this.normals = [];
     this.tangents = [];
-    this.indices = new Array<Integer>();
+    this.indices = new Array<Number>();
   }
 
   public calcNormals (): void {
     for (let i = 0; i < this.indices.length; i += 3) {
-      const i0: number = this.indices[i].intValue();
-      const i1: number = this.indices[i + 1].intValue();
-      const i2: number = this.indices[i + 2].intValue();
+      const i0: number = this.indices[i].valueOf();
+      const i1: number = this.indices[i + 1].valueOf();
+      const i2: number = this.indices[i + 2].valueOf();
 
       console.log('calcNormals', this);
 
@@ -42,9 +41,9 @@ export class IndexedModel {
 
   public calcTangents (): void {
     for (let i = 0; i < this.indices.length; i += 3) {
-      const i0: number = this.indices[i].intValue();
-      const i1: number = this.indices[i + 1].intValue();
-      const i2: number = this.indices[i + 2].intValue();
+      const i0: number = this.indices[i].valueOf();
+      const i1: number = this.indices[i + 1].valueOf();
+      const i2: number = this.indices[i + 2].valueOf();
 
       // These three lines are added to catch undefined positions, which shoujldn't happen...
       if (typeof this.positions[i0] === 'undefined') { this.positions[i0] = new Vector3(0, 0, 0); }
@@ -86,6 +85,6 @@ export class IndexedModel {
 
   public getTangents (): Array<Vector3> { return this.tangents; }
 
-  public getIndices (): Array<Integer> { return this.indices; }
+  public getIndices (): Array<Number> { return this.indices; }
 
 }

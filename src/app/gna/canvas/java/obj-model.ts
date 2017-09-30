@@ -2,7 +2,6 @@ import { Vector3 } from './vector3';
 import { Vector2 } from './vector2';
 import { OBJIndex } from './obj-index';
 import { IndexedModel } from './indexed-model';
-import { Integer } from './Integer';
 import { Loader } from './loader';
 import { BufferedStringReader } from './buffered-string-reader';
 
@@ -65,9 +64,9 @@ export class OBJModel {
   public toIndexedModel (): IndexedModel {
     const result: IndexedModel = new IndexedModel();
     const normalModel: IndexedModel = new IndexedModel();
-    const resultIndexMap: Map<OBJIndex, Integer> = new Map<OBJIndex, Integer>();
-    const normalIndexMap: Map<Integer, Integer> = new Map<Integer, Integer>();
-    const indexMap: Map<Integer, Integer> = new Map<Integer, Integer>();
+    const resultIndexMap: Map<OBJIndex, Number> = new Map<OBJIndex, Number>();
+    const normalIndexMap: Map<Number, Number> = new Map<Number, Number>();
+    const indexMap: Map<Number, Number> = new Map<Number, Number>();
 
     for (let i = 0; i < this.indices.length; i++) {
       const currentIndex: OBJIndex = this.indices[i];
@@ -88,13 +87,13 @@ export class OBJModel {
         currentNormal = new Vector3(0, 0, 0);
       }
 
-      let modelVertexIndex: Integer;
+      let modelVertexIndex: Number;
 
       // 124
       if (typeof resultIndexMap.get(currentIndex) === 'undefined') {
         modelVertexIndex = resultIndexMap.get(currentIndex);
       } else {
-        modelVertexIndex = new Integer(result.getPositions().length);
+        modelVertexIndex = result.getPositions().length;
         resultIndexMap.set(currentIndex, modelVertexIndex);
 
         result.getPositions().push(currentPosition);
@@ -104,13 +103,13 @@ export class OBJModel {
         }
       }
 
-      let normalModelIndex: Integer;
+      let normalModelIndex: Number;
       // 137
       if (typeof resultIndexMap.get(currentIndex) !== 'undefined') {
-        normalModelIndex = new Integer(resultIndexMap.get(currentIndex));
+        normalModelIndex =  resultIndexMap.get(currentIndex);
       } else {
-        normalModelIndex = new Integer(normalModel.getPositions().length);
-        normalIndexMap.set(new Integer(currentIndex.getVertexIndex()), normalModelIndex);
+        normalModelIndex = normalModel.getPositions().length;
+        normalIndexMap.set(currentIndex.getVertexIndex(), normalModelIndex);
 
         normalModel.getPositions().push(currentPosition);
         normalModel.getTexCoords().push(currentTexCoord);

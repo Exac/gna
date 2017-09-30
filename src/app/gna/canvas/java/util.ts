@@ -3,7 +3,6 @@
 import { Matrix4 } from './matrix4';
 import { Vertex } from './vertex';
 import { gl } from '../globals';
-import { Integer } from './Integer';
 
 export class Util {
 
@@ -65,11 +64,11 @@ export class Util {
     return bufferView;
   }
 
-  public static toNumberArray (data: Integer[]): number[] {
+  public static toNumberArray (data: Number[]): number[] {
     const result: number[] = [];
 
     for (let i = 0; i < data.length; i++) {
-      result[i] = typeof data[i] !== 'undefined' ? data[i].Value : 0;
+      result[i] = typeof data[i] !== 'undefined' ? data[i].valueOf() : 0;
     }
 
     return result;

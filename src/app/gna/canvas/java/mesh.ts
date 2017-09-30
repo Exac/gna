@@ -6,7 +6,6 @@ import { Util } from './util';
 import { Vector3 } from './vector3';
 import { IndexedModel } from './indexed-model';
 import { OBJModel } from './obj-model';
-import { Integer } from './Integer';
 
 export class Mesh {
   private static loadedModels: Map<string, MeshResource> = new Map<string, MeshResource>();
@@ -148,7 +147,7 @@ export class Mesh {
 
     const vertexData: Vertex[] = vertices.slice();
 
-    const indexData: Integer[] = model.getIndices().slice();
+    const indexData: Number[] = model.getIndices().slice();
 
     this.addVertices(vertexData, Util.toNumberArray(indexData), false);
 

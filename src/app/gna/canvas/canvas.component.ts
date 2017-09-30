@@ -30,7 +30,6 @@ import { MappedValues } from './java/mapped-values';
 import { ShaderResource } from './java/shader-resource';
 import { TextureResource } from './java/texture-resource';
 import { FreeLook } from './java/free-look';
-import { Integer } from './java/Integer';
 import { BufferedFileReader } from './java/buffered-file-reader';
 import { Loader } from './java/loader';
 import { OBJModel } from './java/obj-model';
