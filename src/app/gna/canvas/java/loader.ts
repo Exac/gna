@@ -5,6 +5,17 @@ export class Loader {
 
   constructor () { }
 
+  public static syncLoadFileContents (fileName: string): string {
+    let result: string;
+    const request: XMLHttpRequest = new XMLHttpRequest();
+    request.open('GET', '/assets/' + fileName, false);
+    request.send(null);
+    if (request.status === 200) {
+      result = request.responseText;
+    }
+    return result;
+  }
+
   /**
    * const p: Promise<{}> = Loader.getFilePromise('test.obj');
    * p.then((str: string) => { console.log(str); });

@@ -6,6 +6,7 @@ import { Util } from './util';
 import { Vector3 } from './vector3';
 import { IndexedModel } from './indexed-model';
 import { OBJModel } from './obj-model';
+import { Integer } from './Integer';
 
 export class Mesh {
   private static loadedModels: Map<string, MeshResource> = new Map<string, MeshResource>();
@@ -30,13 +31,8 @@ export class Mesh {
       this.resource = oldResource;
       this.resource.addReference();
     } else {
-      // WARNING: This is an asynchronous operation. after the constructor
-      // is called there will be milliseconds of
-      const p: Promise<{}> = Loader.getFilePromise(fileName);
-      p.then((str: string) => {
-        this.loadMesh(str);
-        Mesh.loadedModels.set(fileName, this.resource);
-      });
+      this.loadMesh(fileName);
+      Mesh.loadedModels.set(fileName, this.resource);
     }
   }
 
@@ -56,8 +52,23 @@ export class Mesh {
   }
 
   private addVertices (vertices: Vertex[], indices: number[], calcNormals: boolean) {
+
     if (calcNormals) {
       this.calcNormals(vertices, indices);
+    }
+
+    console.log(vertices);
+
+    if (typeof vertices === 'undefined') {
+      console.log('ALERT! vertices are undefined');
+    }
+
+    for (let i = 0; i < vertices.length; i++) {
+      if (typeof vertices[i] === 'undefined') {
+        console.log('ALERT! vertices[' + i + '] is undefined.');
+      } else {
+        console.log(vertices[i]);
+      }
     }
 
     this.resource = new MeshResource(indices.length);
@@ -78,7 +89,7 @@ export class Mesh {
     gl.bindBuffer(gl.ARRAY_BUFFER, this.resource.getVbo());
     gl.vertexAttribPointer(0, 3, gl.FLOAT, false, Vertex.SIZE * 4, 0);
     gl.vertexAttribPointer(1, 2, gl.FLOAT, false, Vertex.SIZE * 4, 12);
-    gl.vertexAttribPointer(2, 3, gl.FLOAT, false, Vertex.SIZE * 4, 24);
+    gl.vertexAttribPointer(2, 3, gl.FLOAT, false, Vertex.SIZE * 4, 20);
     gl.vertexAttribPointer(3, 3, gl.FLOAT, false, Vertex.SIZE * 4, 32);
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.resource.getIbo());
@@ -91,6 +102,7 @@ export class Mesh {
   }
 
   private calcNormals (vertices: Vertex[], indices: number[]): void {
+    console.log('calcNormals');
     for (let i = 0; i < indices.length; i += 3) {
       const i0: number = indices[i];
       const i1: number = indices[i + 1];
@@ -111,12 +123,37 @@ export class Mesh {
     }
   }
 
-  // TODO: Pass file as string, not fileName
-  public loadMesh (fileContents: string): Mesh {
-    const test: OBJModel = new OBJModel('./res/models/' + fileContents);
+  public loadMesh (fileName: string): Mesh | void {
+    const splitArray: string[] = fileName.split('\.');
+    const extension: string = splitArray[splitArray.length - 1];
 
-    return new Mesh([], [], false);
+    if (!(extension === 'obj')) {
+      console.log('Error: \'' + extension + '\' file format not supported for mesh data.');
+      console.error('ExtensionError');
+    }
+
+    const test: OBJModel = new OBJModel('models/' + fileName);
+    const model: IndexedModel = test.toIndexedModel();
+
+    const vertices: Array<Vertex> = new Array<Vertex>();
+
+    for (let i = 0; i < model.getPositions().length; i++) {
+      vertices.push(new Vertex(
+        model.getPositions()[i],
+        model.getTexCoords()[i],
+        model.getNormals()[i],
+        model.getTangents()[i]
+      ));
+    }
+
+    const vertexData: Vertex[] = vertices.slice();
+
+    const indexData: Integer[] = model.getIndices().slice();
+
+    this.addVertices(vertexData, Util.toNumberArray(indexData), false);
+
+    return this;
   }
 
 
-  }
+}

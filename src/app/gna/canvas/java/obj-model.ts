@@ -22,11 +22,8 @@ export class OBJModel {
     this.hasTexCoords = false;
     this.hasNormals = false;
 
-    const p: Promise<{}> = Loader.getFilePromise('test.obj');
-    p.then((str: string) => { this.onFileLoad(str); });
-  }
+    const fileContents: string = Loader.syncLoadFileContents(fileName);
 
-  private onFileLoad (fileContents): void {
     const meshReader: BufferedStringReader = new BufferedStringReader(fileContents);
     let line: string;
 
@@ -62,6 +59,7 @@ export class OBJModel {
       }
     }
     meshReader.close();
+
   }
 
   public toIndexedModel (): IndexedModel {
@@ -91,8 +89,9 @@ export class OBJModel {
       }
 
       let modelVertexIndex: Integer;
+
       // 124
-      if (typeof new Integer(resultIndexMap.get(currentIndex)) !== 'undefined') {
+      if (typeof resultIndexMap.get(currentIndex) === 'undefined') {
         modelVertexIndex = resultIndexMap.get(currentIndex);
       } else {
         modelVertexIndex = new Integer(result.getPositions().length);
@@ -107,7 +106,7 @@ export class OBJModel {
 
       let normalModelIndex: Integer;
       // 137
-      if (typeof new Integer(resultIndexMap.get(currentIndex)) !== 'undefined') {
+      if (typeof resultIndexMap.get(currentIndex) !== 'undefined') {
         normalModelIndex = new Integer(resultIndexMap.get(currentIndex));
       } else {
         normalModelIndex = new Integer(normalModel.getPositions().length);

@@ -78,7 +78,8 @@ export class Vector3 {
     } else if (r instanceof Vector3) {
       return new Vector3(this.x - r.GetX(), this.y - r.GetY(), this.z - r.GetZ());
     } else {
-      throw new TypeError('a is neither a number or a Vector2');
+      console.log(typeof r);
+      throw new TypeError('r is neither a number or a Vector2');
     }
   }
 
@@ -88,6 +89,7 @@ export class Vector3 {
     } else if (r instanceof Vector3) {
       return new Vector3(this.x * r.GetX(), this.y * r.GetY(), this.z * r.GetZ());
     } else {
+      console.log(typeof r);
       throw new TypeError('a is neither a number or a Vector2');
     }
   }

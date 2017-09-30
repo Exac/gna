@@ -1,39 +1,41 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
-import {gl, rebindGL} from './globals';
-import {Shader} from './java/shader';
-import {Vector3} from './java/vector3';
-import {Vector2} from './java/vector2';
-import {Quaternion} from './java/quaternion';
-import {Matrix4} from './java/matrix4';
-import {Transform} from './java/transform';
-import {Vertex} from './java/vertex';
-import {Camera} from './java/camera';
-import {Time} from './java/time';
-import {Util} from './java/util';
-import {WorldObject} from './java/world-object';
-import {Input} from './java/input';
-import {CoreEngine} from './java/core-engine';
-import {TestWorld} from './java/test-world';
-import {LookAtComponent} from './java/look-at-component';
-import {BaseLight} from './java/base-light';
-import {DirectionalLight} from './java/directional-light';
-import {FreeMove} from './java/free-move';
-import {WorldComponent} from './java/world-component';
-import {Material} from './java/material';
-import {Texture} from './java/texture';
-import {PointLight} from './java/point-light';
-import {Attenuation} from './java/attenuation';
-import {SpotLight} from './java/spot-light';
-import {RenderingEngine} from './java/rendering-engine';
-import {Window} from './java/window';
-import {MappedValues} from './java/mapped-values';
-import {ShaderResource} from './java/shader-resource';
-import {TextureResource} from './java/texture-resource';
-import {FreeLook} from './java/free-look';
-import {Integer} from './java/Integer';
-import {BufferedFileReader} from './java/buffered-file-reader';
-import {Loader} from './java/loader';
-import {OBJModel} from './java/obj-model';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { gl, rebindGL } from './globals';
+import { Shader } from './java/shader';
+import { Vector3 } from './java/vector3';
+import { Vector2 } from './java/vector2';
+import { Quaternion } from './java/quaternion';
+import { Matrix4 } from './java/matrix4';
+import { Transform } from './java/transform';
+import { Vertex } from './java/vertex';
+import { Camera } from './java/camera';
+import { Time } from './java/time';
+import { Util } from './java/util';
+import { WorldObject } from './java/world-object';
+import { Input } from './java/input';
+import { CoreEngine } from './java/core-engine';
+import { TestWorld } from './java/test-world';
+import { LookAtComponent } from './java/look-at-component';
+import { BaseLight } from './java/base-light';
+import { DirectionalLight } from './java/directional-light';
+import { FreeMove } from './java/free-move';
+import { WorldComponent } from './java/world-component';
+import { Material } from './java/material';
+import { Texture } from './java/texture';
+import { PointLight } from './java/point-light';
+import { Attenuation } from './java/attenuation';
+import { SpotLight } from './java/spot-light';
+import { RenderingEngine } from './java/rendering-engine';
+import { Window } from './java/window';
+import { MappedValues } from './java/mapped-values';
+import { ShaderResource } from './java/shader-resource';
+import { TextureResource } from './java/texture-resource';
+import { FreeLook } from './java/free-look';
+import { Integer } from './java/Integer';
+import { BufferedFileReader } from './java/buffered-file-reader';
+import { Loader } from './java/loader';
+import { OBJModel } from './java/obj-model';
+import { Mesh } from './java/mesh';
+import { IndexedModel } from './java/indexed-model';
 
 
 @Component({
@@ -44,11 +46,11 @@ import {OBJModel} from './java/obj-model';
 })
 export class CanvasComponent implements OnInit {
 
-  constructor(private elementRef: ElementRef) {
+  constructor (private elementRef: ElementRef) {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
 
     // Global initiation
     rebindGL(this.elementRef.nativeElement,
@@ -89,7 +91,7 @@ export class CanvasComponent implements OnInit {
     // ENGINE.RENDERING
     // const attn = new Attenuation(0.0, 0.0, 1);
     // const matl = new Material(...);
-    // const mesh = new Mesh('mesh.obj'); // TODO
+    // const mesh = new Mesh('mesh.obj');
     // const reen = new RenderingEngine(); // TODO TOCOMPLETE
     // const shad = new Shader('shader');
     // const text = new Texture('texture.png'); // TODO TOCOMPLETE
@@ -122,7 +124,9 @@ export class CanvasComponent implements OnInit {
     const vea: Vertex[] = [new Vertex(new Vector3(0, 0, 0), new Vector2(0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0))];
     const viewVA: Float32Array = Util.createFlippedBuffer(vea);
 
-    const s: Shader = new Shader('shader300');
+    // const s: Shader = new Shader('shader300');
+    const m: Mesh = new Mesh('test.obj');
+
 
   }
 }

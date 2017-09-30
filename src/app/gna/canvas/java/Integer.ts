@@ -21,7 +21,9 @@ export class Integer extends Number {
     } else {
       this.Value = parseInt(value.toString(), 10);
     }
-
+    if (typeof this.Value === 'undefined') {
+      this.Value = 0;
+    }
   }
 
   public static toString (i: number | string, radix?: number) {

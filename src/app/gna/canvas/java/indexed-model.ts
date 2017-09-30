@@ -23,6 +23,8 @@ export class IndexedModel {
       const i1: number = this.indices[i + 1].intValue();
       const i2: number = this.indices[i + 2].intValue();
 
+      console.log('calcNormals', this);
+
       const v1: Vector3 = this.positions[i1].sub(this.positions[i0]);
       const v2: Vector3 = this.positions[i2].sub(this.positions[i0]);
 
@@ -43,6 +45,11 @@ export class IndexedModel {
       const i0: number = this.indices[i].intValue();
       const i1: number = this.indices[i + 1].intValue();
       const i2: number = this.indices[i + 2].intValue();
+
+      // These three lines are added to catch undefined positions, which shoujldn't happen...
+      if (typeof this.positions[i0] === 'undefined') { this.positions[i0] = new Vector3(0, 0, 0); }
+      if (typeof this.positions[i1] === 'undefined') { this.positions[i1] = new Vector3(0, 0, 0); }
+      if (typeof this.positions[i2] === 'undefined') { this.positions[i2] = new Vector3(0, 0, 0); }
 
       const edge1: Vector3 = this.positions[i1].sub(this.positions[i0]);
       const edge2: Vector3 = this.positions[i2].sub(this.positions[i0]);
