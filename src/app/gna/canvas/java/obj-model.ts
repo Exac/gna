@@ -21,6 +21,7 @@ export class OBJModel {
     this.hasTexCoords = false;
     this.hasNormals = false;
 
+    console.log('OBJModel.constructor(', fileName, ')');
     const fileContents: string = Loader.syncLoadFileContents(fileName);
 
     const meshReader: BufferedStringReader = new BufferedStringReader(fileContents);
@@ -28,7 +29,6 @@ export class OBJModel {
 
     while ((line = meshReader.readLine()) != null) {
       const tokens = line.split(' ');
-
       if (tokens.length === 0 || tokens[0] === '#') {
         // skip empty lines and commented lines
         // continue;
@@ -57,11 +57,13 @@ export class OBJModel {
         }
       }
     }
+
     meshReader.close();
 
   }
 
   public toIndexedModel (): IndexedModel {
+    console.log('OBJModel.toIndexedModel()', this);
     const result: IndexedModel = new IndexedModel();
     const normalModel: IndexedModel = new IndexedModel();
     const resultIndexMap: Map<OBJIndex, Number> = new Map<OBJIndex, Number>();

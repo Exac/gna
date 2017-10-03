@@ -13,6 +13,7 @@ export class Mesh {
   private fileName: string;
 
   constructor (verticesOrFileName: string | Vertex[], indicies?: number[], calcNormals?: boolean) {
+    console.log('Mesh.constructor(', arguments, ')');
     if (typeof verticesOrFileName === 'string') {
       this.constructorS(verticesOrFileName);
     } else if (typeof calcNormals === 'undefined') {
@@ -23,6 +24,7 @@ export class Mesh {
   }
 
   private constructorS (fileName: string) {
+    console.log('Mesh.constructorS(', fileName, ')');
     this.fileName = fileName;
     const oldResource = Mesh.loadedModels.get(fileName);
 
@@ -36,10 +38,12 @@ export class Mesh {
   }
 
   private constructorVaNa (vertices: Vertex[], indices: number[]) {
+    console.log('Mesh.constructorVaNa(', vertices, indices, ')');
     this.constructorVaNaB(vertices, indices, false);
   }
 
   private constructorVaNaB (vertices: Vertex[], indices: number[], calcNormals: boolean) {
+    console.log('Mesh.constructorVaNaB(', vertices, indices, calcNormals, ')');
     this.fileName = '';
     this.addVertices(vertices, indices, calcNormals);
   }
@@ -51,7 +55,7 @@ export class Mesh {
   }
 
   private addVertices (vertices: Vertex[], indices: number[], calcNormals: boolean) {
-
+    console.warn('Mesh.addVertices(', vertices, indices, calcNormals, ')');
     if (calcNormals) {
       this.calcNormals(vertices, indices);
     }
@@ -123,6 +127,7 @@ export class Mesh {
   }
 
   public loadMesh (fileName: string): Mesh | void {
+    console.log('Mesh.loadMesh(', fileName, ')');
     const splitArray: string[] = fileName.split('\.');
     const extension: string = splitArray[splitArray.length - 1];
 
@@ -146,9 +151,14 @@ export class Mesh {
     }
 
     const vertexData: Vertex[] = vertices.slice();
-
-    const indexData: Number[] = model.getIndices().slice();
-
+    // const vertexData: Vertex[] = vertices;
+    console.log('Mesh.loadMesh()... test: ', test);
+    console.log('Mesh.loadMesh()... model: ', model);
+    console.log('Mesh.loadMesh()... vertexData: ', vertexData);
+    console.log('Mesh.loadMesh()... vertices: ', vertices);
+    console.log('Mesh.loadMesh()... vertices.slice(): ', vertices.slice());
+    const indexData: Number[] = model.getIndices();
+    console.log('Util.toNumberArray(indexData),', indexData, Util.toNumberArray(indexData));
     this.addVertices(vertexData, Util.toNumberArray(indexData), false);
 
     return this;

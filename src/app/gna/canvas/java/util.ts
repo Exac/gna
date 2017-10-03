@@ -15,7 +15,7 @@ export class Util {
       return Util.createFlippedBufferM(v);
     }
     if (v instanceof Array) {
-      if (typeof v[0] === 'number') {
+      if (typeof v[0] === 'number') { console.log('Util.createFlippedBufferNA(' + v + ')');
         return Util.createFlippedBufferNA(...v);
       } else if (v[0] instanceof Vertex) {
         return Util.createFlippedBufferV(v);
@@ -36,6 +36,7 @@ export class Util {
   }
 
   private static createFlippedBufferV (vertices: Vertex[]): Float32Array {
+    console.log('Util.createFlippedBufferV(', vertices, ')');
     const bufferData: ArrayBuffer = new ArrayBuffer(4 * vertices.length * Vertex.SIZE);
     const bufferView: Float32Array = new Float32Array(bufferData);
     const o = 0; // offset

@@ -3,13 +3,17 @@ export class OBJIndex {
   private texCoordIndex: number;
   private normalIndex: number;
 
-  public getVertexIndex (): number { return this.vertexIndex; }
+  public getVertexIndex (): number {
+    return this.vertexIndex;
+  }
 
   public getTexCoordIndex (): number { return this.texCoordIndex; }
 
   public getNormalIndex (): number { return this.normalIndex; }
 
-  public setVertexIndex (val: number): void { this.vertexIndex = val; }
+  public setVertexIndex (val: number): void {
+    this.vertexIndex = val;
+  }
 
   public setTexCoordIndex (val: number): void { this.texCoordIndex = val; }
 

@@ -114,17 +114,17 @@ export class CanvasComponent implements OnInit {
     // ===========  SCRATCH ============
     // =================================
 
-    const mat = new Matrix4().InitIdentity();
-    const viewM = new Float32Array(Util.createFlippedBuffer(mat));
-
-    const nar: number[] = [50, 100, 150, 200];
-    const viewNA: Float32Array = Util.createFlippedBuffer(nar);
-
-    const vea: Vertex[] = [new Vertex(new Vector3(0, 0, 0), new Vector2(0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0))];
-    const viewVA: Float32Array = Util.createFlippedBuffer(vea);
+    // const mat = new Matrix4().InitIdentity();
+    // const viewM = new Float32Array(Util.createFlippedBuffer(mat));
+    //
+    // const nar: number[] = [50, 100, 150, 200];
+    // const viewNA: Float32Array = Util.createFlippedBuffer(nar);
+    //
+    // const vea: Vertex[] = [new Vertex(new Vector3(0, 0, 0), new Vector2(0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0))];
+    // const viewVA: Float32Array = Util.createFlippedBuffer(vea);
 
     // const s: Shader = new Shader('shader300');
-    const m: Mesh = new Mesh('test.obj');
+    const m: Mesh = new Mesh('plane.obj');
 
 
   }

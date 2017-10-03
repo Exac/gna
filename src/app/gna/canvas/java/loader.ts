@@ -6,6 +6,7 @@ export class Loader {
   constructor () { }
 
   public static syncLoadFileContents (fileName: string): string {
+    console.log('Loader.syncLoadFileContents(', fileName, ')');
     let result: string;
     const request: XMLHttpRequest = new XMLHttpRequest();
     request.open('GET', '/assets/' + fileName, false);
@@ -13,6 +14,7 @@ export class Loader {
     if (request.status === 200) {
       result = request.responseText;
     }
+
     return result;
   }
 
