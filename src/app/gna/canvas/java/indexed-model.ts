@@ -45,7 +45,7 @@ export class IndexedModel {
       const i1: number = this.indices[i + 1].valueOf();
       const i2: number = this.indices[i + 2].valueOf();
 
-      // These three lines are added to catch undefined positions, which shoujldn't happen...
+      // These three lines are added to catch undefined positions, which shouldn't happen...
       if (typeof this.positions[i0] === 'undefined') { this.positions[i0] = new Vector3(0, 0, 0); }
       if (typeof this.positions[i1] === 'undefined') { this.positions[i1] = new Vector3(0, 0, 0); }
       if (typeof this.positions[i2] === 'undefined') { this.positions[i2] = new Vector3(0, 0, 0); }
@@ -77,7 +77,10 @@ export class IndexedModel {
     }
   }
 
-  public getPositions (): Array<Vector3> { return this.positions; }
+  public getPositions (): Array<Vector3> {
+    console.log('IndexedModel.getPositions(), this:', this, ' IndexedModel.positions:', this.positions);
+    return this.positions;
+  }
 
   public getTexCoords (): Array<Vector2> { return this.texCoords; }
 

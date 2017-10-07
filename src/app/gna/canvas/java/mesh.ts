@@ -137,10 +137,12 @@ export class Mesh {
     }
 
     const test: OBJModel = new OBJModel('models/' + fileName);
+    console.log('mesh.loadMesh().test:OBJModel ', test);
     const model: IndexedModel = test.toIndexedModel();
 
     const vertices: Array<Vertex> = new Array<Vertex>();
 
+    console.log('model.getPositions()', model.getPositions());
     for (let i = 0; i < model.getPositions().length; i++) {
       vertices.push(new Vertex(
         model.getPositions()[i],

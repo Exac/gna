@@ -124,7 +124,7 @@ export class CanvasComponent implements OnInit {
     // const viewVA: Float32Array = Util.createFlippedBuffer(vea);
 
     // const s: Shader = new Shader('shader300');
-    const m: Mesh = new Mesh('plane.obj');
+    // const m: Mesh = new Mesh('plane.obj');
 
 
   }
